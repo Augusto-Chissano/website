@@ -4,10 +4,708 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>August</title>
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><path fill='%2318e7b0' d='M50,95 L95,50 L50,5 L5,50 L50,95 Z M50,85 L85,50 L50,15 L15,50 L50,85 Z M50,75 L75,50 L50,25 L25,50 L50,75 Z M50,65 L65,50 L50,35 L35,50 L50,65 Z M50,55 L55,50 L50,45 L45,50 L50,55 Z'></path></svg>" type="image/svg+xml">
+    <title>Augusto Chissano - Software Engineer</title>
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><path fill='%2318e7b0' d='M50,95 L95,50 L50,5 L5,50 L50,95 Z M50,85 L85,50 L50,15 L15,50 L50,85 Z M50,75 L75,50 L50,25 L25,50 L50,75 Z M50,65 L65,50 L50,35 L35,50 L50,65 Z M50,55 L55,50 L50,45 L45,50 L50,55 Z'></path></svg>"
+        type="image/svg+xml">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        :root {
+            --dark-blue: #0b1627;
+            --accent-color: #18e7b0;
+            --text-color: #f5f5f5;
+            --text-secondary: #b0b0b0;
+            --section-padding: 80px 0;
+            --card-bg: rgba(255, 255, 255, 0.03);
+            --header-bg: rgba(11, 22, 39, 0.95);
+            --floating-social-bg: rgba(11, 22, 39, 0.85); /* Slightly transparent for the floating bar */
+        }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--dark-blue);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1140px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header & Navigation */
+        header {
+            padding: 20px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            background-color: var(--header-bg);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-weight: bold;
+            font-size: 24px;
+            color: var(--text-color);
+            text-decoration: none;
+            letter-spacing: 0.5px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            color: var(--text-color);
+            text-decoration: none;
+            transition: color 0.3s ease;
+            padding: 5px 0;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent-color);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-color);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .social-links a {
+            color: var(--text-color);
+            font-size: 18px;
+            text-decoration: none;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: var(--accent-color);
+            transform: translateY(-3px);
+        }
+
+        /* Hamburger Menu Icon */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+            z-index: 101;
+        }
+
+        .menu-toggle span {
+            width: 25px;
+            height: 3px;
+            background-color: var(--text-color);
+            transition: all 0.3s ease;
+        }
+
+        .menu-toggle.active span:nth-child(1) {
+            transform: rotate(-45deg) translate(-5px, 6px);
+        }
+
+        .menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .menu-toggle.active span:nth-child(3) {
+            transform: rotate(45deg) translate(-5px, -6px);
+        }
+
+        /* Hero Section */
+        #hero {
+            padding-top: 160px;
+            text-align: center;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .fractal-logo {
+            width: 150px;
+            height: 150px;
+            margin: 0 auto 30px;
+            animation: rotateLogo 10s linear infinite;
+        }
+
+        @keyframes rotateLogo {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .hero-content h1 {
+            font-size: 52px;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .name-highlight {
+            color: var(--accent-color);
+        }
+
+        .hero-content p {
+            margin-bottom: 30px;
+            font-size: 20px;
+            color: var(--text-secondary);
+        }
+
+        .bio {
+            max-width: 600px;
+            margin: 0 auto 50px;
+            color: var(--text-secondary);
+            font-size: 17px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: transparent;
+            color: var(--accent-color);
+            border: 1px solid var(--accent-color);
+            padding: 12px 30px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            font-size: 18px;
+        }
+
+        .cta-button:hover {
+            background-color: rgba(24, 231, 176, 0.15);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(24, 231, 176, 0.2);
+        }
+
+        /* Section Headings */
+        .section-heading {
+            font-size: 32px;
+            margin-bottom: 40px;
+            display: flex;
+            align-items: center;
+            font-weight: 600;
+            color: var(--text-color);
+        }
+
+        .section-heading::before {
+            content: " / ";
+            color: var(--accent-color);
+            margin-right: 15px;
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+
+        /* About Section */
+        #about {
+            padding: var(--section-padding);
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 300px;
+            gap: 60px;
+            align-items: flex-start;
+        }
+
+        .about-text p {
+            margin-bottom: 20px;
+            color: var(--text-secondary);
+            font-size: 17px;
+        }
+
+        .highlighted-text {
+            color: var(--accent-color);
+            font-weight: 700;
+        }
+
+        .tech-stack {
+            margin-top: 30px;
+        }
+
+        .tech-stack p {
+            margin-bottom: 15px;
+            font-size: 17px;
+        }
+
+        .tech-list {
+            list-style-type: none;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 10px 20px;
+        }
+
+        .tech-list li {
+            color: var(--text-secondary);
+            font-size: 15px;
+            position: relative;
+            padding-left: 20px;
+        }
+
+        .tech-list li::before {
+            content: "▹";
+            color: var(--accent-color);
+            position: absolute;
+            left: 0;
+            top: 0;
+            font-size: 1.2em;
+        }
+
+        .personal-interests {
+            margin-top: 30px;
+            color: var(--text-secondary);
+            font-size: 17px;
+        }
+
+        .about-image {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .about-image img {
+            max-width: 300px;
+            height: auto;
+            border: 2px solid var(--accent-color);
+            border-radius: 10px;
+            box-shadow: 6px 13px 23px -5px rgba(0, 0, 0, 0.4);
+            transition: all 0.3s ease;
+            filter: grayscale(100%);
+        }
+
+        .about-image img:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 25px rgba(0, 0, 0, 0.5);
+            filter: grayscale(0%);
+        }
+
+        /* Experience Section */
+        #experience {
+            padding: var(--section-padding);
+        }
+
+        .experience-item {
+            display: grid;
+            grid-template-columns: 200px 1fr;
+            gap: 30px;
+            margin-bottom: 40px;
+            background-color: var(--card-bg);
+            padding: 25px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .experience-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .company-sidebar {
+            text-align: right;
+            border-right: 2px solid var(--accent-color);
+            padding-right: 20px;
+        }
+
+        .company-name {
+            text-transform: uppercase;
+            font-size: 16px;
+            color: var(--accent-color);
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            margin-bottom: 5px;
+        }
+
+        .job-details h3 {
+            color: var(--text-color);
+            margin-bottom: 10px;
+            font-size: 22px;
+        }
+
+        .job-details .company {
+            color: var(--accent-color);
+            font-weight: 600;
+        }
+
+        .job-timeline {
+            color: var(--text-secondary);
+            font-size: 15px;
+            margin-bottom: 15px;
+            font-style: italic;
+        }
+
+        .job-description {
+            color: var(--text-secondary);
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+
+        .job-description ul {
+            list-style: none;
+            padding-left: 0;
+            margin-top: 15px;
+        }
+
+        .job-description li {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 8px;
+        }
+
+        /* Projects Section */
+        #projects {
+            padding: var(--section-padding);
+        }
+
+        .featured-project {
+            margin-bottom: 70px;
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+        }
+
+        .featured-project:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        .project-image {
+            width: 60%;
+            height: auto;
+            display: block;
+            object-fit: cover;
+            max-height: 400px;
+        }
+
+        .featured-project:nth-child(even) .project-image {
+            border-radius: 0 12px 12px 0;
+        }
+
+        .featured-project:nth-child(odd) .project-image {
+            border-radius: 12px 0 0 12px;
+        }
+
+
+        .project-details {
+            padding: 30px;
+            width: 40%;
+        }
+
+        .project-title {
+            font-size: 28px;
+            margin-bottom: 15px;
+            color: var(--text-color);
+            font-weight: 700;
+        }
+
+        .project-description {
+            color: var(--text-secondary);
+            margin-bottom: 25px;
+            font-size: 16px;
+        }
+
+        /* Project Links (used in cards and featured) */
+        .project-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .project-links a {
+            color: var(--text-color);
+            font-size: 22px;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+
+        .project-links a:hover {
+            color: var(--accent-color);
+            transform: translateY(-3px);
+        }
+
+        /* Project Grid */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .project-card {
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            padding: 25px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 100%;
+        }
+
+        .project-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        .project-card-icon {
+            color: var(--accent-color);
+            font-size: 30px;
+            margin-bottom: 15px;
+        }
+
+        .project-card h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
+            color: var(--text-color);
+        }
+
+        .project-card p {
+            color: var(--text-secondary);
+            font-size: 15px;
+            margin-bottom: 15px;
+            flex-grow: 1;
+        }
+
+        .project-card-tech {
+            color: var(--text-secondary);
+            font-size: 13px;
+            margin-top: 10px;
+            margin-bottom: 15px;
+        }
+
+        .project-card .project-links {
+            margin-top: 0;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 40px 0;
+            color: var(--text-secondary);
+            font-size: 15px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            margin-top: 50px;
+        }
+
+        footer p {
+            margin-bottom: 5px;
+        }
+
+        /* Floating Mobile Social Links */
+        .mobile-social-float {
+            display: none; /* Hidden by default */
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: var(--floating-social-bg);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            padding: 10px 20px;
+            border-radius: 50px; /* Pill shape */
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            z-index: 99; /* Below header, above most content */
+            gap: 25px; /* Spacing between icons */
+            animation: float-animation 3s ease-in-out infinite;
+        }
+
+        .mobile-social-float a {
+            color: var(--text-color);
+            font-size: 24px; /* Larger icons for easy tapping */
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+
+        .mobile-social-float a:hover {
+            color: var(--accent-color);
+            transform: translateY(-3px);
+        }
+
+        @keyframes float-animation {
+            0% {
+                transform: translateX(-50%) translateY(0px);
+            }
+            50% {
+                transform: translateX(-50%) translateY(-10px);
+            }
+            100% {
+                transform: translateX(-50%) translateY(0px);
+            }
+        }
+
+
+        /* Media Queries */
+        @media (max-width: 992px) {
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .about-image {
+                order: -1;
+                margin-bottom: 30px;
+            }
+
+            .experience-item {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+
+            .company-sidebar {
+                text-align: left;
+                border-right: none;
+                border-bottom: 2px solid var(--accent-color);
+                padding-right: 0;
+                padding-bottom: 15px;
+            }
+
+            .projects-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .featured-project {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .featured-project:nth-child(even) {
+                flex-direction: column;
+            }
+
+            .project-image {
+                width: 100%;
+                border-radius: 8px 8px 0 0 !important;
+            }
+
+            .project-details {
+                width: 100%;
+                padding: 25px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 80px;
+                left: 0;
+                width: 100%;
+                background-color: var(--dark-blue);
+                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+                padding: 20px;
+                animation: slideDown 0.3s ease-out forwards;
+                height: auto;
+            }
+
+            .nav-links.show-nav {
+                display: flex;
+            }
+
+            @keyframes slideDown {
+                from {
+                    opacity: 0;
+                    transform: translateY(-20px);
+                }
+
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+
+            .nav-links a {
+                padding: 15px 0;
+                text-align: center;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+                width: 100%;
+            }
+
+            .nav-links a:last-child {
+                border-bottom: none;
+            }
+
+            .menu-toggle {
+                display: flex;
+            }
+
+            /* Hide header social links on small screens */
+            header .social-links {
+                display: none;
+            }
+
+            /* Show floating social links on small screens */
+            .mobile-social-float {
+                display: flex;
+            }
+
+            #hero {
+                padding-top: 120px;
+            }
+
+            .hero-content h1 {
+                font-size: 38px;
+            }
+
+            .hero-content p {
+                font-size: 16px;
+            }
+
+            .bio {
+                font-size: 15px;
+            }
+
+            .section-heading {
+                font-size: 28px;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 
 <body>
@@ -15,6 +713,11 @@
         <div class="container">
             <nav>
                 <a href="#" class="logo">Augusto Chissano</a>
+                <div class="menu-toggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
                 <div class="nav-links">
                     <a href="#">Home</a>
                     <a href="#about">About</a>
@@ -22,207 +725,274 @@
                     <a href="#projects">Projects</a>
                 </div>
                 <div class="social-links">
-                    <a href="mailto:augustochissanojr@gmail.com"><i class="fas fa-envelope"></i></a>
-                    <a href="https://www.linkedin.com/in/augusto-chissano-a0285a1a5/" target="_blank"><i
-                            class="fab fa-linkedin"></i></a>
-                    <a href="https://github.com/Augusto-Chissano" target="_blank"><i class="fab fa-github"></i></a>
-                    <a href="https://wa.me/258860039864" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                    <a href="mailto:augustochissanojr@gmail.com" rel="noopener noreferrer"><i
+                            class="fas fa-envelope"></i></a>
+                    <a href="https://www.linkedin.com/in/augusto-chissano-a0285a1a5/" target="_blank"
+                        rel="noopener noreferrer"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://github.com/Augusto-Chissano" target="_blank" rel="noopener noreferrer"><i
+                            class="fab fa-github"></i></a>
+                    <a href="https://wa.me/258860039864" target="_blank" rel="noopener noreferrer"><i
+                            class="fab fa-whatsapp"></i></a>
                 </div>
             </nav>
         </div>
     </header>
 
-    <section id="hero">
-        <div class="container">
-            <div class="fractal-logo">
-                <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                    <path fill="#18e7b0"
-                        d="M50,95 L95,50 L50,5 L5,50 L50,95 Z M50,85 L85,50 L50,15 L15,50 L50,85 Z M50,75 L75,50 L50,25 L25,50 L50,75 Z M50,65 L65,50 L50,35 L35,50 L50,65 Z M50,55 L55,50 L50,45 L45,50 L50,55 Z">
-                    </path>
-                </svg>
-            </div>
-            <div class="hero-content">
-                <h1>hi, <span class="name-highlight">augusto</span> here.</h1>
-                <p>I create stuff sometimes.</p>
-                <div class="bio">
-                    <p>I'm a software engineer from Mozambique building technology that makes a difference.</p>
+    <main>
+        <section id="hero">
+            <div class="container">
+                <div class="fractal-logo">
+                    <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                        <path fill="#18e7b0"
+                            d="M50,95 L95,50 L50,5 L5,50 L50,95 Z M50,85 L85,50 L50,15 L15,50 L50,85 Z M50,75 L75,50 L50,25 L25,50 L50,75 Z M50,65 L65,50 L50,35 L35,50 L50,65 Z M50,55 L55,50 L50,45 L45,50 L50,55 Z">
+                        </path>
+                    </svg>
                 </div>
-                <a href="mailto:augustochissanojr@gmail.com" class="cta-button">Say hi!</a>
+                <div class="hero-content">
+                    <h1>hi, <span class="name-highlight">augusto</span> here.</h1>
+                    <p>I build impactful software solutions.</p>
+                    <div class="bio">
+                        <p>I'm a software engineer from Mozambique passionate about crafting innovative technology that
+                            solves real-world problems and creates a positive impact.</p>
+                    </div>
+                    <a href="mailto:augustochissanojr@gmail.com" class="cta-button">Say hi!</a>
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section id="about">
-        <div class="container">
-            <h2 class="section-heading">about me</h2>
-            <div class="about-content">
-                <div class="about-text">
-                    <p>I am currently a <b>Software Development Engineer</b> at the Technological Innovation Department
-                        at <span class="highlighted-text">Águas da Região Metropolitana de Maputo, SA</span>, where I
-                        work in the <b>Research and Development (R&D) team</b>. At the same time, I am in the final
-                        stages of completing my <b>Bachelor’s degree</b> in <b>Computer Science</b> at <span
-                            class="highlighted-text">Eduardo Mondlane University</span>.</p>
+        <section id="about">
+            <div class="container">
+                <h2 class="section-heading">about me</h2>
+                <div class="about-content">
+                    <div class="about-text">
+                        <p>I am currently a <b>Software Development Engineer</b> at the Technological Innovation
+                            Department at <span class="highlighted-text">Águas da Região Metropolitana de Maputo, SA</span>,
+                            where I work in the <b>Research and Development (R&D) team</b>. My role involves developing
+                            and implementing solutions that enhance operational efficiency. At the same time, I am in the final stages of completing my
+                            <b>Bachelor’s degree</b> in <b>Computer Science</b> at <span
+                                class="highlighted-text">Eduardo Mondlane University</span>.</p>
 
-                    <div class="tech-stack">
-                        <p>Here are some technologies I have been working with:</p>
-                        <ul class="tech-list">
-                            <li>JavaScript</li>
-                            <li>PHP</li>
-                            <li>Vue.js</li>
-                            <li>Node.js</li>
-                            <li>Laravel</li>
-                            <li>SQL</li>
+                        <div class="tech-stack">
+                            <p>Here are some technologies I have been working with:</p>
+                            <ul class="tech-list">
+                                <li>JavaScript</li>
+                                <li>PHP</li>
+                                <li>Vue.js</li>
+                                <li>Node.js</li>
+                                <li>Laravel</li>
+                                <li>SQL</li>
+                                <li>Quasar</li>
+                                <li>JQuery</li>
+                                <li>Bootstrap</li>
+                                <li>MySQL</li>
+                            </ul>
+                        </div>
+
+                        <div class="personal-interests">
+                            <p>Outside of work, I'm passionate about learning languages, exploring cutting-edge
+                                technologies, and diving into anime culture. When I'm not coding or studying, you'll
+                                likely find me immersed in captivating anime series or catching up on the latest
+                                scientific advancements and tech trends.</p>
+                        </div>
+                    </div>
+                    <div class="about-image">
+                        <img src="img/profile_picture.jpg"
+                            alt="Augusto Chissano professional profile picture." class="profile-image">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="experience">
+            <div class="container">
+                <h2 class="section-heading">experience</h2>
+
+                <div class="experience-item">
+                    <div class="company-sidebar">
+                        <div class="company-name">AdRMM</div>
+                    </div>
+                    <div class="job-details">
+                        <h3>Software Engineer @ <span class="company">Águas da Região Metropolitana de Maputo, SA</span>
+                        </h3>
+                        <div class="job-timeline">JUN 2024 - PRESENT</div>
+                        <ul class="job-description">
+                            <li>Developed and maintained robust backend APIs using Laravel,
+                                improving data processing efficiency.</li>
+                            <li>Implemented responsive user interfaces with Vue.js.</li>
+                            <li>Collaborated with cross-functional teams to design and deploy new features, ensuring
+                                seamless integration with existing infrastructure.</li>
+                            <li>Participated in code reviews and provided constructive feedback, contributing to a
+                                higher code quality standard across the R&D team.</li>
                         </ul>
                     </div>
+                </div>
 
-                    <div class="personal-interests">
-                        <p>Outside of work, I'm passionate about learning languages, exploring cutting-edge
-                            technologies, and diving into anime culture. When I'm
-                            not coding or studying, you'll likely find me immersed in animes or catching up on
-                            the latest scientific advancements.</p>
-                    </div>
-                </div>
-                <div class="about-image">
-                    <img src="/img/profile_picture.jpg" alt="Profile Photo" class="profile-image">
-                </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section id="experience">
-        <div class="container">
-            <h2 class="section-heading">experience</h2>
+        <section id="projects">
+            <div class="container">
+                <h2 class="section-heading">projects</h2>
 
-            <div class="experience-item">
-                <div class="company-sidebar">
-                    <div class="company-name">AdRMM</div>
-                </div>
-                <div class="job-details">
-                    <h3>Software Engineer @ <span class="company"> Águas da Região Metropolitana de Maputo, SA</span></h3>
-                    <div class="job-timeline">JUN 2024 - PRESENT</div>
-                    <p class="job-description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Excepturi
-                        maiores ducimus, ipsum mollitia amet esse soluta incidunt aspernatur quisquam provident
-                        consequatur illum earum debitis iure dicta quae praesentium, fuga voluptas.</p>
-                    <p class="job-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi, corrupti
-                        harum hic ducimus tempore, enim quidem atque sunt dolor, voluptatibus quos? Ad hic, nulla unde
-                        sunt adipisci non consequuntur. Molestiae.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="projects">
-        <div class="container">
-            <h2 class="section-heading">projects</h2>
-
-            <div class="featured-project">
-                <img src="/api/placeholder/800/400" alt="Featured Project" class="project-image">
-                <div class="project-details">
-                    <h3 class="project-title">Project Name</h3>
-                    <p class="project-description">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Provident
-                        dicta corporis ut unde maxime pariatur, blanditiis iusto ipsam iste cupiditate placeat
-                        perferendis iure maiores distinctio consequatur ab exercitationem nulla soluta.</p>
-                    <div class="project-links">
-                        <a href="#" target="_blank"><i class="fab fa-github"></i></a>
-                        <a href="#" target="_blank"><i class="fas fa-external-link-alt"></i></a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="projects-grid">
-                <div class="project-card">
-                    <div class="project-card-icon">
-                        <i class="fas fa-tasks"></i>
-                    </div>
-                    <h3>Project Name</h3>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore provident tempore eos harum
-                        numquam soluta consequuntur voluptatem maiores suscipit omnis debitis minima, ex neque sapiente
-                        placeat. Voluptate possimus sit necessitatibus?</p>
-                    <div class="project-card-tech">Python (Flask), Vue.js, Bootstrap, SQL</div>
-                    <div class="project-links">
-                        <a href="#" target="_blank"><i class="fab fa-github"></i></a>
+                <div class="featured-project">
+                    <img src="https://via.placeholder.com/800x400/18e7b0/0b1627?text=Featured+Project+Image"
+                        alt="Screenshot of a featured web project." class="project-image">
+                    <div class="project-details">
+                        <h3 class="project-title">E-commerce Platform for Local Artisans</h3>
+                        <p class="project-description">A full-stack e-commerce solution designed to empower local
+                            artisans to sell their products online. Features include secure payment integration, product
+                            management, and user authentication. Built with a focus on intuitive user experience and
+                            scalable backend architecture.</p>
+                        <div class="project-links">
+                            <a href="https://github.com/Augusto-Chissano/ecommerce-platform" target="_blank"
+                                rel="noopener noreferrer"><i class="fab fa-github"></i></a>
+                            <a href="#" target="_blank" rel="noopener noreferrer"><i
+                                    class="fas fa-external-link-alt"></i></a>
+                        </div>
                     </div>
                 </div>
 
-                <div class="project-card">
-                    <div class="project-card-icon">
-                        <i class="fas fa-robot"></i>
+                <div class="projects-grid">
+                    <div class="project-card">
+                        <div class="project-card-icon">
+                            <i class="fas fa-tasks"></i>
+                        </div>
+                        <h3>Task Management System</h3>
+                        <p>A web-based task management application designed to help teams organize and track their
+                            workflow efficiently. Features include task assignment, due dates, and progress tracking with
+                            real-time updates.</p>
+                        <div class="project-card-tech">Python (Flask), Vue.js, Bootstrap, SQL</div>
+                        <div class="project-links">
+                            <a href="https://github.com/Augusto-Chissano/task-manager" target="_blank"
+                                rel="noopener noreferrer"><i class="fab fa-github"></i></a>
+                        </div>
                     </div>
-                    <h3>Project Name</h3>
-                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Perspiciatis debitis asperiores aliquam
-                        quidem eaque suscipit, neque molestiae nisi numquam, rerum magni quia, impedit soluta sint
-                        deleniti molestias? Nulla, reprehenderit dolore?</p>
-                    <div class="project-card-tech">JavaScript, HTML/CSS, Python</div>
-                    <div class="project-links">
-                        <a href="#" target="_blank"><i class="fab fa-github"></i></a>
-                    </div>
-                </div>
 
-                <div class="project-card">
-                    <div class="project-card-icon">
-                        <i class="fas fa-chart-line"></i>
+                    <div class="project-card">
+                        <div class="project-card-icon">
+                            <i class="fas fa-robot"></i>
+                        </div>
+                        <h3>AI Chatbot for Customer Support</h3>
+                        <p>An intelligent chatbot integrated into a customer support system, capable of handling FAQs,
+                            routing complex queries to human agents, and providing instant assistance to users.
+                            Leverages natural language processing.</p>
+                        <div class="project-card-tech">JavaScript, Node.js, Python (NLTK)</div>
+                        <div class="project-links">
+                            <a href="https://github.com/Augusto-Chissano/ai-chatbot" target="_blank"
+                                rel="noopener noreferrer"><i class="fab fa-github"></i></a>
+                        </div>
                     </div>
-                    <h3>Project Name</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum molestiae, distinctio sequi natus
-                        adipisci quam voluptas hic itaque atque vero consequatur praesentium quia ex. Vitae expedita
-                        dignissimos assumenda corrupti voluptatem.</p>
-                    <div class="project-card-tech">Node.js (Express.js), Next.js, PostgreSQL</div>
-                    <div class="project-links">
-                        <a href="#" target="_blank"><i class="fab fa-github"></i></a>
-                    </div>
-                </div>
 
-                <div class="project-card">
-                    <div class="project-card-icon">
-                        <i class="fab fa-telegram"></i>
+                    <div class="project-card">
+                        <div class="project-card-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h3>Financial Dashboard</h3>
+                        <p>A data visualization dashboard for tracking personal or small business finances. Allows users
+                            to input income and expenses, visualize spending patterns, and generate reports for better
+                            financial planning.</p>
+                        <div class="project-card-tech">Node.js (Express.js), Next.js, PostgreSQL</div>
+                        <div class="project-links">
+                            <a href="https://github.com/Augusto-Chissano/finance-dashboard" target="_blank"
+                                rel="noopener noreferrer"><i class="fab fa-github"></i></a>
+                        </div>
                     </div>
-                    <h3>Project Name</h3>
-                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nihil commodi laborum minus, officia
-                        quas amet temporibus rerum, quos distinctio repudiandae aspernatur, animi excepturi deleniti
-                        esse! Corporis atque fugit facere porro.</p>
-                    <div class="project-card-tech">JavaScript, Node.js, Telegram API</div>
-                    <div class="project-links">
-                        <a href="#" target="_blank"><i class="fab fa-github"></i></a>
-                    </div>
-                </div>
 
-                <div class="project-card">
-                    <div class="project-card-icon">
-                        <i class="fas fa-gamepad"></i>
+                    <div class="project-card">
+                        <div class="project-card-icon">
+                            <i class="fab fa-telegram"></i>
+                        </div>
+                        <h3>Telegram Bot for News Updates</h3>
+                        <p>A Telegram bot that delivers daily news summaries and articles from specified sources
+                            directly to users. Configurable news categories and delivery frequency ensure personalized
+                            content for each subscriber.</p>
+                        <div class="project-card-tech">JavaScript, Node.js, Telegram API</div>
+                        <div class="project-links">
+                            <a href="https://github.com/Augusto-Chissano/telegram-news-bot" target="_blank"
+                                rel="noopener noreferrer"><i class="fab fa-github"></i></a>
+                        </div>
                     </div>
-                    <h3>Project Name</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Incidunt dignissimos doloremque
-                        recusandae possimus, veritatis libero cum totam odit et, quas blanditiis, assumenda similique
-                        corrupti ullam? Corporis, delectus! Iusto, inventore doloribus.</p>
-                    <div class="project-card-tech">Java, Android Studio</div>
-                    <div class="project-links">
-                        <a href="#" target="_blank"><i class="fab fa-github"></i></a>
-                    </div>
-                </div>
 
-                <div class="project-card">
-                    <div class="project-card-icon">
-                        <i class="fas fa-chess"></i>
+                    <div class="project-card">
+                        <div class="project-card-icon">
+                            <i class="fas fa-gamepad"></i>
+                        </div>
+                        <h3>Simple Mobile Game</h3>
+                        <p>A casual mobile game developed for Android, featuring intuitive controls and engaging
+                            gameplay mechanics. Focuses on performance optimization and a smooth user experience on
+                            various devices.</p>
+                        <div class="project-card-tech">Java, Android Studio</div>
+                        <div class="project-links">
+                            <a href="https://github.com/Augusto-Chissano/mobile-game" target="_blank"
+                                rel="noopener noreferrer"><i class="fab fa-github"></i></a>
+                        </div>
                     </div>
-                    <h3>Project Name</h3>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. A in nulla itaque expedita temporibus
-                        laudantium incidunt fuga corrupti quidem odio? Sit facilis, accusantium minima ex quas nam
-                        voluptatibus blanditiis? Ipsam?</p>
-                    <div class="project-card-tech">Python</div>
-                    <div class="project-links">
-                        <a href="#" target="_blank"><i class="fab fa-github"></i></a>
+
+                    <div class="project-card">
+                        <div class="project-card-icon">
+                            <i class="fas fa-chess"></i>
+                        </div>
+                        <h3>AI Chess Engine</h3>
+                        <p>A command-line based AI chess engine implemented in Python. Utilizes algorithms like Minimax
+                            with Alpha-Beta Pruning to determine optimal moves, providing a challenging opponent for
+                            players.</p>
+                        <div class="project-card-tech">Python</div>
+                        <div class="project-links">
+                            <a href="https://github.com/Augusto-Chissano/ai-chess-engine" target="_blank"
+                                rel="noopener noreferrer"><i class="fab fa-github"></i></a>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+    </main>
+
+    <div class="mobile-social-float">
+        <a href="mailto:augustochissanojr@gmail.com" rel="noopener noreferrer"><i class="fas fa-envelope"></i></a>
+        <a href="https://www.linkedin.com/in/augusto-chissano-a0285a1a5/" target="_blank"
+            rel="noopener noreferrer"><i class="fab fa-linkedin"></i></a>
+        <a href="https://github.com/Augusto-Chissano" target="_blank" rel="noopener noreferrer"><i
+                class="fab fa-github"></i></a>
+        <a href="https://wa.me/258860039864" target="_blank" rel="noopener noreferrer"><i
+                class="fab fa-whatsapp"></i></a>
+    </div>
 
     <footer>
         <div class="container">
             <p>Built and designed by Augusto Chissano</p>
-            <p>All rights reserved. ©</p>
+            <p>All rights reserved. © 2025</p>
         </div>
     </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const menuToggle = document.querySelector('.menu-toggle');
+            const navLinks = document.querySelector('.nav-links');
+
+            menuToggle.addEventListener('click', () => {
+                navLinks.classList.toggle('show-nav');
+                menuToggle.classList.toggle('active'); // Toggle active class for hamburger animation
+            });
+
+            // Close nav when a link is clicked (for single-page navigation)
+            navLinks.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    if (navLinks.classList.contains('show-nav')) {
+                        navLinks.classList.remove('show-nav');
+                        menuToggle.classList.remove('active');
+                    }
+                });
+            });
+
+            // Optional: Close nav if clicked outside (more complex, consider if really needed for simple portfolio)
+            // document.addEventListener('click', (event) => {
+            //     if (!navLinks.contains(event.target) && !menuToggle.contains(event.target) && navLinks.classList.contains('show-nav')) {
+            //         navLinks.classList.remove('show-nav');
+            //         menuToggle.classList.remove('active');
+            //     }
+            // });
+        });
+    </script>
 </body>
 
 </html>
