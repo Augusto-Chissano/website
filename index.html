@@ -18,7 +18,8 @@
             --section-padding: 80px 0;
             --card-bg: rgba(255, 255, 255, 0.03);
             --header-bg: rgba(11, 22, 39, 0.95);
-            --floating-social-bg: rgba(11, 22, 39, 0.85); /* Slightly transparent for the floating bar */
+            --floating-social-bg: rgba(11, 22, 39, 0.85);
+            /* Slightly transparent for the floating bar */
         }
 
         /* Smooth scrolling */
@@ -536,7 +537,9 @@
 
         /* Floating Mobile Social Links */
         .mobile-social-float {
-            display: none; /* Hidden by default */
+            visibility: hidden;
+            opacity: 0;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
             position: fixed;
             bottom: 20px;
             left: 50%;
@@ -545,16 +548,20 @@
             backdrop-filter: blur(5px);
             -webkit-backdrop-filter: blur(5px);
             padding: 10px 20px;
-            border-radius: 50px; /* Pill shape */
+            border-radius: 50px;
+            /* Pill shape */
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-            z-index: 99; /* Below header, above most content */
-            gap: 25px; /* Spacing between icons */
+            z-index: 99;
+            /* Below header, above most content */
+            gap: 25px;
+            /* Spacing between icons */
             animation: float-animation 3s ease-in-out infinite;
         }
 
         .mobile-social-float a {
             color: var(--text-color);
-            font-size: 24px; /* Larger icons for easy tapping */
+            font-size: 24px;
+            /* Larger icons for easy tapping */
             transition: color 0.3s ease, transform 0.3s ease;
         }
 
@@ -567,9 +574,11 @@
             0% {
                 transform: translateX(-50%) translateY(0px);
             }
+
             50% {
                 transform: translateX(-50%) translateY(-10px);
             }
+
             100% {
                 transform: translateX(-50%) translateY(0px);
             }
@@ -679,6 +688,8 @@
             /* Show floating social links on small screens */
             .mobile-social-float {
                 display: flex;
+                visibility: visible;
+                opacity: 1;
             }
 
             #hero {
@@ -766,11 +777,14 @@
                 <div class="about-content">
                     <div class="about-text">
                         <p>I am currently a <b>Software Development Engineer</b> at the Technological Innovation
-                            Department at <span class="highlighted-text">Águas da Região Metropolitana de Maputo, SA</span>,
+                            Department at <span class="highlighted-text">Águas da Região Metropolitana de Maputo,
+                                SA</span>,
                             where I work in the <b>Research and Development (R&D) team</b>. My role involves developing
-                            and implementing solutions that enhance operational efficiency. At the same time, I am in the final stages of completing my
+                            and implementing solutions that enhance operational efficiency. At the same time, I am in
+                            the final stages of completing my
                             <b>Bachelor’s degree</b> in <b>Computer Science</b> at <span
-                                class="highlighted-text">Eduardo Mondlane University</span>.</p>
+                                class="highlighted-text">Eduardo Mondlane University</span>.
+                        </p>
 
                         <div class="tech-stack">
                             <p>Here are some technologies I have been working with:</p>
@@ -796,8 +810,8 @@
                         </div>
                     </div>
                     <div class="about-image">
-                        <img src="img/profile_picture.jpg"
-                            alt="Augusto Chissano professional profile picture." class="profile-image">
+                        <img src="img/profile_picture.jpg" alt="Augusto Chissano professional profile picture."
+                            class="profile-image">
                     </div>
                 </div>
             </div>
@@ -859,7 +873,8 @@
                         </div>
                         <h3>Task Management System</h3>
                         <p>A web-based task management application designed to help teams organize and track their
-                            workflow efficiently. Features include task assignment, due dates, and progress tracking with
+                            workflow efficiently. Features include task assignment, due dates, and progress tracking
+                            with
                             real-time updates.</p>
                         <div class="project-card-tech">Python (Flask), Vue.js, Bootstrap, SQL</div>
                         <div class="project-links">
@@ -949,8 +964,8 @@
 
     <div class="mobile-social-float">
         <a href="mailto:augustochissanojr@gmail.com" rel="noopener noreferrer"><i class="fas fa-envelope"></i></a>
-        <a href="https://www.linkedin.com/in/augusto-chissano-a0285a1a5/" target="_blank"
-            rel="noopener noreferrer"><i class="fab fa-linkedin"></i></a>
+        <a href="https://www.linkedin.com/in/augusto-chissano-a0285a1a5/" target="_blank" rel="noopener noreferrer"><i
+                class="fab fa-linkedin"></i></a>
         <a href="https://github.com/Augusto-Chissano" target="_blank" rel="noopener noreferrer"><i
                 class="fab fa-github"></i></a>
         <a href="https://wa.me/258860039864" target="_blank" rel="noopener noreferrer"><i
